@@ -28,6 +28,8 @@
       --blue-grad: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
       --green-main: #0d9488;
       --green-grad: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+      --orange-main: #f59e0b; /* สีใหม่สำหรับ TPM/PM */
+      --orange-grad: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
       --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
       --shadow-lg: 0 20px 40px -5px rgba(15, 23, 42, 0.08);
       --radius-xl: 28px;
@@ -37,9 +39,10 @@
     body {
       font-family: 'Prompt', sans-serif;
       background-color: var(--bg);
+      /* พื้นหลัง Mesh Gradient อ่อนๆ */
       background-image: 
         radial-gradient(at 0% 0%, hsla(217,100%,76%,0.15) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, hsla(168,100%,76%,0.15) 0px, transparent 50%);
+        radial-gradient(at 100% 100%, hsla(38,100%,76%,0.1) 0px, transparent 50%);
       background-attachment: fixed;
       color: var(--text-main);
       min-height: 100vh;
@@ -47,7 +50,7 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
-      padding-bottom: 100px; /* เพิ่มพื้นที่ด้านล่างไม่ให้เมนูลอยบังเนื้อหา */
+      padding-bottom: 120px; /* กันเมนูลอยบัง */
       overflow-x: hidden;
     }
 
@@ -58,7 +61,7 @@
 
     .container {
       width: 100%;
-      max-width: 900px;
+      max-width: 1100px; /* ขยายความกว้างเพื่อรองรับ 3 การ์ด */
       animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
@@ -70,7 +73,6 @@
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow-lg);
       padding: 48px 40px;
-      position: relative;
     }
 
     .header {
@@ -97,14 +99,13 @@
       font-size: clamp(28px, 4vw, 36px);
       margin-bottom: 12px;
       font-weight: 700;
-      color: #1e293b;
     }
 
     .header p {
       color: var(--text-sub);
       font-size: 16px;
       line-height: 1.6;
-      max-width: 540px;
+      max-width: 600px;
       margin: 0 auto;
       font-weight: 300;
     }
@@ -133,64 +134,56 @@
 
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr); /* แบ่งเป็น 3 คอลัมน์ */
+      gap: 20px;
     }
 
     .menu-card {
       background: #ffffff;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 32px 28px;
+      padding: 28px;
       box-shadow: var(--shadow-sm);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
-      overflow: hidden;
     }
 
     .menu-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px);
       box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1);
-      border-color: rgba(37, 99, 235, 0.3);
+      border-color: rgba(37, 99, 235, 0.2);
     }
 
     .icon-wrapper {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
-      margin-bottom: 20px;
+      font-size: 26px;
+      margin-bottom: 18px;
       color: white;
     }
 
-    .icon-wrapper.blue {
-      background: var(--blue-grad);
-      box-shadow: 0 8px 16px -4px rgba(37, 99, 235, 0.4);
-    }
-
-    .icon-wrapper.green {
-      background: var(--green-grad);
-      box-shadow: 0 8px 16px -4px rgba(13, 148, 136, 0.4);
-    }
+    .icon-wrapper.blue { background: var(--blue-grad); box-shadow: 0 8px 16px -4px rgba(37, 99, 235, 0.4); }
+    .icon-wrapper.green { background: var(--green-grad); box-shadow: 0 8px 16px -4px rgba(13, 148, 136, 0.4); }
+    .icon-wrapper.orange { background: var(--orange-grad); box-shadow: 0 8px 16px -4px rgba(245, 158, 11, 0.4); }
 
     .menu-card h2 {
-      font-size: 20px;
-      margin-bottom: 12px;
+      font-size: 19px;
+      margin-bottom: 10px;
       font-weight: 600;
       color: #0f172a;
     }
 
     .menu-card p {
       color: var(--text-sub);
-      line-height: 1.6;
-      font-size: 14px;
-      margin-bottom: 28px;
+      line-height: 1.5;
+      font-size: 13.5px;
+      margin-bottom: 24px;
       font-weight: 300;
     }
 
@@ -201,63 +194,34 @@
       gap: 8px;
       text-decoration: none;
       border-radius: 12px;
-      padding: 14px 20px;
+      padding: 12px 16px;
       font-weight: 500;
-      font-size: 15px;
+      font-size: 14px;
       transition: all 0.2s ease;
       width: 100%;
-      position: relative;
-      overflow: hidden;
     }
 
-    .btn-blue {
-      background: var(--blue-main);
-      color: white;
-    }
+    .btn-blue { background: var(--blue-main); color: white; }
+    .btn-green { background: var(--green-main); color: white; }
+    .btn-orange { background: var(--orange-main); color: white; }
 
-    .btn-green {
-      background: var(--green-main);
-      color: white;
-    }
+    .btn:hover { filter: brightness(1.1); }
 
-    .btn:hover {
-      filter: brightness(1.1);
-      transform: translateY(-2px);
-    }
-
-    .btn:active {
-      transform: translateY(0);
-    }
-
-    .footer-note {
-      text-align: center;
-      margin-top: 32px;
-      color: #94a3b8;
-      font-size: 13px;
-      font-weight: 300;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    /* =========================================
-       CSS แถบเมนูลอยตัว (Floating Nav)
-       ========================================= */
+    /* Floating Nav */
     .floating-nav {
       position: fixed;
-      bottom: 32px;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      padding: 8px 12px;
+      padding: 8px 10px;
       border-radius: 99px;
       box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.6);
       display: flex;
-      gap: 8px;
+      gap: 5px;
       z-index: 9999;
     }
 
@@ -268,147 +232,91 @@
       text-decoration: none;
       color: #64748b;
       font-weight: 500;
-      font-size: 15px;
-      padding: 10px 20px;
+      font-size: 14px;
+      padding: 10px 18px;
       border-radius: 99px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.2s ease;
     }
 
-    .nav-item:hover, 
-    .nav-item.active {
+    .nav-item:hover, .nav-item.active {
       background: #eff6ff;
       color: #2563eb;
     }
 
-    .nav-item i {
-      font-size: 22px;
-    }
-
-    @media (max-width: 768px) {
-      .panel {
-        padding: 32px 24px;
-      }
-      .menu-grid {
-        grid-template-columns: 1fr;
-      }
-      .time-container {
-        flex-direction: column;
-        gap: 8px;
-      }
+    @media (max-width: 992px) {
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 600px) {
-      .floating-nav {
-        bottom: 20px;
-        padding: 8px;
-        width: 90%;
-        justify-content: space-between;
-      }
-      .nav-item {
-        flex-direction: column;
-        gap: 4px;
-        padding: 8px 12px;
-        font-size: 11px;
-      }
-      .nav-item i {
-        font-size: 24px;
-      }
+      .panel { padding: 32px 20px; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .floating-nav { width: 95%; justify-content: space-around; }
+      .nav-item { flex-direction: column; gap: 4px; font-size: 10px; padding: 8px; }
+      .nav-item i { font-size: 20px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="panel">
-      
       <div class="header">
-        <div class="badge">
-          <i class="ph ph-gear"></i> Maintenance Portal
-        </div>
+        <div class="badge"><i class="ph ph-gear"></i> Maintenance Portal</div>
         <h1>เมนูหลักงานซ่อมบำรุง</h1>
-        <p>
-          ระบบบันทึกรีพอร์ตงานซ่อม ติดตามการแก้ไขปัญหา วิเคราะห์ Loss Time และสรุปข้อมูล KPI สำหรับหน่วยงานซ่อมบำรุง
-        </p>
-        
+        <p>ศูนย์รวมระบบจัดการงานซ่อมบำรุง (Maintenance) และการบำรุงรักษาเชิงป้องกัน (TPM/PM) ครบวงจร</p>
         <div class="time-container">
-          <div class="date-box">
-            <i class="ph ph-calendar-blank"></i>
-            <span id="dateText">กำลังโหลด...</span>
-          </div>
-          <div class="time-box">
-            <i class="ph ph-clock"></i>
-            <span id="timeText">--:--:--</span>
-          </div>
+          <div class="date-box"><i class="ph ph-calendar-blank"></i><span id="dateText">...</span></div>
+          <div class="time-box"><i class="ph ph-clock"></i><span id="timeText">--:--</span></div>
         </div>
       </div>
 
       <div class="menu-grid">
         <div class="menu-card">
           <div>
-            <div class="icon-wrapper blue">
-              <i class="ph ph-clipboard-text"></i>
-            </div>
+            <div class="icon-wrapper blue"><i class="ph ph-clipboard-text"></i></div>
             <h2>ฟอร์มกรอกรีพอร์ต</h2>
-            <p>
-              บันทึกข้อมูลการแจ้งซ่อม, อาการเสีย, สาเหตุ (Root Cause) และรายละเอียดการเข้าแก้ไขหน้างาน
-            </p>
+            <p>บันทึกข้อมูลการแจ้งซ่อม อาการเสีย และสาเหตุ เพื่อเก็บฐานข้อมูลประวัติการแก้ไขหน้างาน</p>
           </div>
-          <a class="btn btn-blue" href="https://thames3450.github.io/Maintenance-Report/">
-            เข้าใช้งานฟอร์ม <i class="ph ph-arrow-right"></i>
-          </a>
+          <a class="btn btn-blue" href="https://thames3450.github.io/Maintenance-Report/">เข้าใช้งานฟอร์ม <i class="ph ph-arrow-right"></i></a>
         </div>
 
         <div class="menu-card">
           <div>
-            <div class="icon-wrapper green">
-              <i class="ph ph-chart-line-up"></i>
-            </div>
+            <div class="icon-wrapper green"><i class="ph ph-chart-line-up"></i></div>
             <h2>ประวัติการซ่อม & KPI</h2>
-            <p>
-              ดูข้อมูลประวัติย้อนหลัง, ติดตามค่า MTBF / MTTR และวิเคราะห์ภาพรวมการซ่อมบำรุงผ่าน Dashboard
-            </p>
+            <p>วิเคราะห์ข้อมูลย้อนหลัง ติดตามค่า MTBF / MTTR และดูภาพรวมผ่าน Dashboard</p>
           </div>
-          <a class="btn btn-green" href="https://thames3450.github.io/Maintenance-Dashboard/">
-            ดู Dashboard <i class="ph ph-arrow-right"></i>
-          </a>
+          <a class="btn btn-green" href="https://thames3450.github.io/Maintenance-Dashboard/">ดู Dashboard <i class="ph ph-arrow-right"></i></a>
+        </div>
+
+        <div class="menu-card">
+          <div>
+            <div class="icon-wrapper orange"><i class="ph ph-calendar-check"></i></div>
+            <h2>จัดการงาน TPM/PM</h2>
+            <p>วางแผนและติดตามการบำรุงรักษาเชิงป้องกัน ตรวจเช็คเครื่องจักรตามวงรอบ เพื่อลด Machine Breakdown</p>
+          </div>
+          <a class="btn btn-orange" href="https://thames3450.github.io/PM-Machine/">จัดการ TPM/PM <i class="ph ph-arrow-right"></i></a>
         </div>
       </div>
 
-      <div class="footer-note">
+      <div class="footer-note" style="text-align: center; margin-top: 32px; color: #94a3b8; font-size: 13px;">
         <i class="ph ph-shield-check"></i> Smart Maintenance System · Secure Access
       </div>
-      
     </div>
   </div>
 
   <div class="floating-nav">
-    <a href="#" class="nav-item active">
-      <i class="ph ph-house"></i>
-      <span>หน้าหลัก</span>
-    </a>
-
-    <a href="https://thames3450.github.io/Maintenance-Report/" class="nav-item">
-      <i class="ph ph-clipboard-text"></i>
-      <span>ฟอร์มรีพอร์ต</span>
-    </a>
-
-    <a href="https://thames3450.github.io/Maintenance-Dashboard/" class="nav-item">
-      <i class="ph ph-chart-line-up"></i>
-      <span>แดชบอร์ด</span>
-    </a>
+    <a href="#" class="nav-item active"><i class="ph ph-house"></i><span>หน้าหลัก</span></a>
+    <a href="https://thames3450.github.io/Maintenance-Report/" class="nav-item"><i class="ph ph-clipboard-text"></i><span>ฟอร์มรีพอร์ต</span></a>
+    <a href="https://thames3450.github.io/Maintenance-Dashboard/" class="nav-item"><i class="ph ph-chart-line-up"></i><span>แดชบอร์ด</span></a>
+    <a href="https://thames3450.github.io/PM-Machine/" class="nav-item"><i class="ph ph-calendar-check"></i><span>TPM/PM</span></a>
   </div>
 
   <script>
-    // ฟังก์ชันอัปเดตวันและเวลา
     function updateDateTime() {
       const now = new Date();
-      
-      const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      document.getElementById('dateText').textContent = now.toLocaleDateString('th-TH', dateOptions);
-      
-      const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-      document.getElementById('timeText').textContent = now.toLocaleTimeString('th-TH', timeOptions) + ' น.';
+      document.getElementById('dateText').textContent = now.toLocaleDateString('th-TH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById('timeText').textContent = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) + ' น.';
     }
-
     updateDateTime();
     setInterval(updateDateTime, 1000);
   </script>
